@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Builder | Alnova AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            🤖 Alnova AI
+        </div>
+
+        <a href="dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </nav>
+
+
+    <!-- RESUME PAGE -->
+    <section class="tool-page resume-page">
+
+        <h1>
+            📄 AI Professional Resume Builder
+        </h1>
+
+        <p>
+            Create a colourful professional resume with your photo and contact details.
+        </p>
+
+
+        <!-- RESUME FORM -->
+        <div class="tool-box resume-builder-box">
+
+
+            <!-- PROFILE PHOTO -->
+            <div class="resume-photo-upload">
+
+                <div class="photo-preview-wrapper">
+
+                    <img
+                        id="resumePhotoPreview"
+                        class="resume-photo-preview"
+                        src=""
+                        alt="Profile Preview"
+                        style="display:none;"
+                    >
+
+                    <div
+                        id="resumePhotoPlaceholder"
+                        class="resume-photo-upload-placeholder"
+                    >
+                        👤
+                    </div>
+
+                </div>
+
+
+                <label
+                    for="resumePhoto"
+                    class="photo-upload-btn"
+                >
+                    📸 Choose Profile Photo
+                </label>
+
+
+                <input
+                    type="file"
+                    id="resumePhoto"
+                    accept="image/*"
+                    onchange="previewResumePhoto(event)"
+                    hidden
+                >
+
+                <small>
+                    JPG / PNG image recommended
+                </small>
+
+            </div>
+
+
+            <!-- BASIC DETAILS -->
+            <div class="resume-form-grid">
+
+                <input
+                    type="text"
+                    id="resumeName"
+                    placeholder="Full Name *"
+                >
+
+
+                <input
+                    type="tel"
+                    id="resumePhone"
+                    placeholder="Mobile Number *"
+                >
+
+
+                <input
+                    type="email"
+                    id="resumeEmail"
+                    placeholder="Email Address *"
+                >
+
+
+                <input
+                    type="text"
+                    id="resumeCourse"
+                    placeholder="Course / Degree *"
+                >
+
+            </div>
+
+
+            <!-- SKILLS -->
+            <input
+                type="text"
+                id="resumeSkills"
+                placeholder="Skills e.g. Java, HTML, CSS, Python *"
+            >
+
+
+            <!-- EDUCATION -->
+            <textarea
+                id="resumeEducation"
+                placeholder="Education details e.g. B.Tech CSE, ABC College, 2026"
+                rows="4"
+            ></textarea>
+
+
+            <!-- PROJECTS -->
+            <textarea
+                id="resumeProjects"
+                placeholder="Projects e.g. Alnova AI, Library Management System"
+                rows="4"
+            ></textarea>
+
+
+            <!-- GENERATE BUTTON -->
+            <button onclick="createResume()">
+                ✨ Generate Professional Resume
+            </button>
+
+
+            <!-- RESULT -->
+            <div
+                id="resumeResult"
+                class="result-box"
+            >
+
+                <h2>
+                    📄 Your Resume
+                </h2>
+
+                <p>
+                    Fill the details above and click
+                    <b>Generate Professional Resume</b>.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

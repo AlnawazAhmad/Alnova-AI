@@ -1,0 +1,754 @@
+/* =========================
+   BASIC SETTINGS
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7ff;
+    color: #1f2937;
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logo */
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: #4f46e5;
+}
+
+/* Menu */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    list-style: none; /* Bullet points hatane ke liye */
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: #4f46e5;
+}
+
+/* Navbar Button */
+.nav-menu button {
+    border: none;
+    background: #4f46e5;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu button:hover {
+    background: #4338ca;
+}
+
+/* =========================
+   HERO SECTION
+   ========================= */
+
+.hero {
+    min-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #eef2ff, #ffffff);
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+/* Small heading */
+.small-title {
+    color: #4f46e5;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+/* Main heading */
+.hero h1 {
+    font-size: 58px;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #4f46e5;
+}
+
+/* Description */
+.description {
+    font-size: 19px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+/* Main button */
+.main-button {
+    border: none;
+    background: #4f46e5;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.main-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+}
+
+/* =========================
+   FEATURES
+   ========================= */
+
+.features {
+    padding: 80px 8%;
+    text-align: center;
+    background: #ffffff;
+}
+
+.features h2 {
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.section-description {
+    color: #666;
+    margin-bottom: 45px;
+}
+
+/* Cards */
+.feature-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.feature-card {
+    background: #f8f9ff;
+    padding: 35px 25px;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon */
+.feature-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.feature-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* =========================
+   ABOUT
+   ========================= */
+
+.about {
+    padding: 80px 15%;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 38px;
+    margin-bottom: 20px;
+}
+
+.about p {
+    color: #555;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+    background: #111827;
+    color: #ffffff;
+    text-align: center;
+    padding: 25px;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+   ========================= */
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-menu {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .feature-container {
+        grid-template-columns: 1fr;
+    }
+
+    .about {
+        padding: 60px 8%;
+    }
+}
+/* =================================
+   LOGIN / REGISTER PAGE
+   ================================= */
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 430px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+.auth-logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #4f46e5;
+    margin-bottom: 20px;
+}
+
+.auth-box h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.auth-subtitle {
+    color: #666666;
+    margin-bottom: 30px;
+}
+
+.auth-box form {
+    text-align: left;
+}
+
+.auth-box label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.auth-box input {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 18px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-box input:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #4f46e5;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.auth-btn:hover {
+    background: #4338ca;
+    transform: translateY(-1px);
+}
+
+.auth-btn:active {
+    transform: translateY(0);
+}
+
+.auth-link {
+    margin-top: 25px;
+    color: #666666;
+}
+
+.auth-link a {
+    color: #4f46e5;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.auth-link a:hover {
+    color: #4338ca;
+}
+
+.back-home {
+    display: inline-block;
+    margin-top: 20px;
+    color: #555555;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.back-home:hover {
+    color: #4f46e5;
+}
+
+/* =================================
+   DASHBOARD
+   ================================= */
+
+.dashboard {
+    padding: 60px 8%;
+    text-align: center;
+}
+
+.dashboard > h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.dashboard > p {
+    color: #666666;
+    margin-bottom: 45px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.dashboard-card {
+    background: #ffffff;
+    padding: 35px 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.dashboard-card > div {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.dashboard-card h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.dashboard-card p {
+    color: #666666;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.dashboard-card button {
+    border: none;
+    background: #4f46e5;
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.dashboard-card button:hover {
+    background: #4338ca;
+}
+
+/* =================================
+   MOBILE RESPONSIVE
+   ================================= */
+
+@media (max-width: 768px) {
+    .dashboard {
+        padding: 40px 5%;
+    }
+
+    .dashboard > h1 {
+        font-size: 30px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-box {
+        padding: 30px 20px;
+    }
+}
+
+/* DASHBOARD */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: #111827;
+    color: white;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.logout-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.dashboard {
+    text-align: center;
+    padding: 50px 30px;
+}
+
+.dashboard h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.dashboard > p {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.feature-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.feature-icon {
+    font-size: 45px;
+}
+
+.feature-card h2 {
+    margin: 15px 0;
+}
+
+.feature-card p {
+    color: #555;
+    min-height: 50px;
+}
+
+.feature-card button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #111827;
+    color: white;
+}
+
+.feature-card button:hover {
+    background: #374151;
+}
+/* ========================
+   AI CHAT PAGE
+======================== */
+
+.chat-page {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.chat-page h1 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.chat-page > p {
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.chat-box {
+    width: 90%;
+    max-width: 800px;
+    height: 500px;
+    margin: auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.chat-messages {
+    height: 410px;
+    padding: 20px;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.ai-message,
+.user-message {
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    max-width: 70%;
+}
+
+.ai-message {
+    background: #eeeeee;
+    margin-right: auto;
+}
+
+.user-message {
+    background: #111827;
+    color: white;
+    margin-left: auto;
+}
+
+.chat-input {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    gap: 10px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.chat-input button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #111827;
+    color: white;
+    cursor: pointer;
+}
+
+.chat-input button:hover {
+    background: #374151;
+}
+
+.back-btn {
+    color: white;
+    text-decoration: none;
+}
+/* ========================
+   AI NOTES PAGE
+======================== */
+
+.notes-page {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.notes-page h1 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.notes-page > p {
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.notes-box {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.notes-box input {
+    width: 70%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.notes-box button {
+    padding: 14px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #111827;
+    color: white;
+    cursor: pointer;
+}
+
+.notes-result {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    text-align: left;
+}
+/* ========================
+   COMMON TOOL PAGES
+======================== */
+
+.tool-page {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.tool-page h1 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.tool-page > p {
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.tool-box {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.tool-box input {
+    width: 80%;
+    padding: 14px;
+    margin: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.tool-box button {
+    padding: 13px 22px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #111827;
+    color: white;
+    cursor: pointer;
+}
+
+.tool-box button:hover {
+    background: #374151;
+}
+
+.result-box {
+    margin-top: 30px;
+    padding: 25px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.result-box h2 {
+    margin-bottom: 15px;
+}
+
+.result-box li {
+    margin: 8px 0;
+}
+
+.back-btn {
+    color: white;
+    text-decoration: none;
+}

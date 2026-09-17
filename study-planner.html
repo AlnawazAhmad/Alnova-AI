@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Study Planner | Alnova AI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🤖 Alnova AI
+        </div>
+
+        <a href="dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </nav>
+
+
+    <section class="tool-page">
+
+        <h1>📅 Smart Study Planner</h1>
+
+        <p>
+            Create your smart study schedule
+        </p>
+
+
+        <div class="tool-box">
+
+            <input
+                type="text"
+                id="studySubject"
+                placeholder="Enter subject e.g. Java"
+            >
+
+            <input
+                type="number"
+                id="studyHours"
+                placeholder="Study hours per day"
+            >
+
+            <button onclick="createPlanner()">
+                Create Planner ✨
+            </button>
+
+
+            <div id="plannerResult" class="result-box">
+
+                <h2>Your Study Plan</h2>
+
+                <p>
+                    Enter subject and study hours.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Notes | Alnova AI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🤖 Alnova AI
+        </div>
+
+        <a href="dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </nav>
+
+
+
+    <!-- AI NOTES -->
+
+    <section class="tool-page">
+
+        <h1>
+            📚 Alnova AI Notes
+        </h1>
+
+        <p>
+            Create simple and useful study notes using AI
+        </p>
+
+
+        <div class="tool-box">
+
+
+            <!-- TOPIC INPUT -->
+
+            <input
+                type="text"
+                id="notesTopic"
+                placeholder="Enter topic e.g. Artificial Intelligence"
+            >
+
+
+            <!-- GENERATE BUTTON -->
+
+            <button onclick="generateNotes()">
+                ✨ Generate Notes
+            </button>
+
+
+            <!-- DOWNLOAD BUTTON -->
+
+            <button
+                onclick="downloadNotes()"
+            >
+                📥 Download Notes
+            </button>
+
+
+            <!-- RESULT -->
+
+            <div
+                id="notesResult"
+                class="result-box"
+            >
+
+                <h2>
+                    📝 Your Notes
+                </h2>
+
+                <p>
+                    Enter a topic and click
+                    Generate Notes.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <script src="script.js"></script>
+
+
+
+    <!-- DOWNLOAD FUNCTION -->
+
+    <script>
+
+        function downloadNotes() {
+
+            const result =
+                document.getElementById(
+                    "notesResult"
+                );
+
+
+            const notes =
+                result.innerText;
+
+
+            if (
+                notes.trim() === "" ||
+                notes.includes(
+                    "Enter a topic"
+                )
+            ) {
+
+                alert(
+                    "Please generate notes first! ❌"
+                );
+
+                return;
+            }
+
+
+            // Notes ko text file mein convert karna
+
+            const file =
+                new Blob(
+                    [notes],
+                    {
+                        type: "text/plain"
+                    }
+                );
+
+
+            // Download link banana
+
+            const link =
+                document.createElement("a");
+
+
+            link.href =
+                URL.createObjectURL(file);
+
+
+            link.download =
+                "Alnova-AI-Notes.txt";
+
+
+            // Download start
+
+            link.click();
+
+
+            // URL remove
+
+            URL.revokeObjectURL(
+                link.href
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
+```

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Quiz | Alnova AI</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🤖 Alnova AI
+        </div>
+
+        <a href="dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </nav>
+
+
+    <section class="tool-page">
+
+        <h1>🧠 AI Quiz</h1>
+
+        <p>
+            Create as many AI questions as you want
+        </p>
+
+
+        <div class="tool-box">
+
+            <!-- Topic -->
+            <input
+                type="text"
+                id="quizTopic"
+                placeholder="Enter topic e.g. Java"
+            >
+
+
+            <!-- Number of Questions -->
+            <input
+                type="number"
+                id="quizCount"
+                placeholder="How many questions? e.g. 34"
+                min="1"
+                max="100"
+            >
+
+
+            <button onclick="startQuiz()">
+                Start Quiz 🚀
+            </button>
+
+
+            <div
+                id="quizResult"
+                class="result-box">
+
+                <h2>
+                    🧠 Welcome to Alnova AI Quiz
+                </h2>
+
+                <p>
+                    Enter your topic and choose how
+                    many questions you want.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
