@@ -1,127 +1,75 @@
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
 import os
 
 from database import get_connection, create_users_table
 
-
 app = Flask(__name__)
 CORS(app)
-
-# =========================
-# DATABASE
-# =========================
 
 create_users_table()
 
 
 # =========================
-# GEMINI SETTINGS
-# =========================
-
-GEMINI_API_KEY = os.getenv("Gemini_API_Key_3")
-
-GEMINI_URL = (
-    "https://generativelanguage.googleapis.com/v1beta/"
-    "models/gemini-2.5-flash:generateContent"
-)
-
-
-# =========================
-# GEMINI AI FUNCTION
+# GEMINI AI
 # =========================
 
 def ask_gemini(prompt):
 
-    if not GEMINI_API_KEY:
-        raise Exception("Gemini API key is missing.")
+    api_key = os.environ.get("GEMINI_API_KEY_3")
+
+    if not api_key:
+        raise Exception("GEMINI_API_KEY_3 not found")
+
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
+
+    headers = {
+        "Content-Type": "application/json",
+        "x-goog-api-key": api_key
+    }
+
+    payload = {
+        "contents": [
+            {
+                "parts": [
+                    {
+                        "text": prompt
+                    }
+                ]
+            }
+        ]
+    }
 
     response = requests.post(
-        GEMINI_URL,
-        headers={
-            "x-goog-api-key": GEMINI_API_KEY,
-            "Content-Type": "application/json"
-        },
-        json={
-            "contents": [
-                {
-                    "parts": [
-                        {
-                            "text": prompt
-                        }
-                    ]
-                }
-            ]
-        },
+        url,
+        headers=headers,
+        json=payload,
         timeout=120
     )
 
     response.raise_for_status()
 
-    data = response.json()
+    result = response.json()
 
-    candidates = data.get("candidates", [])
-
-    if not candidates:
-        raise Exception("Gemini returned no response.")
-
-    parts = candidates[0].get("content", {}).get("parts", [])
-
-    text = ""
-
-    for part in parts:
-        text += part.get("text", "")
-
-    if not text:
-        raise Exception("Gemini returned empty response.")
-
-    return text.strip()
+    return result["candidates"][0]["content"]["parts"][0]["text"]
 
 
 # =========================
-# TEST API
+# TEST
 # =========================
 
 @app.route("/api/test")
 def test():
 
     return jsonify({
+        "success": True,
         "message": "Alnova AI Backend is Working! 🤖🚀"
     })
 
 
 # =========================
-# GEMINI TEST
-# =========================
-
-@app.route("/api/ai-test", methods=["GET"])
-def ai_test():
-
-    try:
-
-        reply = ask_gemini(
-            "Say hello to the user in one short sentence."
-        )
-
-        return jsonify({
-            "success": True,
-            "reply": reply
-        })
-
-    except Exception as error:
-
-        print("Gemini Test Error:", error)
-
-        return jsonify({
-            "success": False,
-            "message": "Gemini connection failed.",
-            "error": str(error)
-        }), 500
-
-
-# =========================
-# REGISTER API
+# REGISTER
 # =========================
 
 @app.route("/api/register", methods=["POST"])
@@ -189,7 +137,7 @@ def register():
 
 
 # =========================
-# LOGIN API
+# LOGIN
 # =========================
 
 @app.route("/api/login", methods=["POST"])
@@ -269,64 +217,33 @@ def chat():
 
         return jsonify({
             "reply": "Please enter a message."
-        }), 400
-
-    prompt = f"""
-You are Alnova AI, a helpful AI assistant.
-
-User message:
-{user_message}
-
-Answer clearly and helpfully.
-"""
+        })
 
     try:
 
-        reply = ask_gemini(prompt)
+        reply = ask_gemini(user_message)
 
         return jsonify({
-            "success": True,
             "reply": reply
         })
 
-    except requests.exceptions.Timeout:
-
-        return jsonify({
-            "success": False,
-            "reply": "AI response lene mein zyada time lag raha hai."
-        }), 500
-
-    except requests.exceptions.RequestException as error:
-
-        print("Gemini API Error:", error)
-
-        return jsonify({
-            "success": False,
-            "reply": "Gemini se connection nahi ho raha.",
-            "error": str(error)
-        }), 500
-
     except Exception as error:
 
-        print("Chat Error:", error)
+        print("Gemini Chat Error:", error)
 
         return jsonify({
-            "success": False,
-            "reply": "AI mein error aa gaya.",
-            "error": str(error)
+            "reply": "Gemini AI se connection nahi ho raha."
         }), 500
 
 
 # =========================
-# AI RESUME BUILDER
+# RESUME BUILDER
 # =========================
 
 @app.route("/api/resume", methods=["POST"])
 def create_resume():
 
     data = request.get_json(silent=True) or {}
-
-    print("Resume Data Received:", data)
 
     name = str(data.get("name", "")).strip()
     phone = str(data.get("phone", "")).strip()
@@ -358,9 +275,7 @@ def create_resume():
         }), 400
 
     prompt = f"""
-You are a professional resume writer.
-
-Create a professional fresher resume for this student.
+Create a professional fresher resume.
 
 Name: {name}
 Mobile: {phone}
@@ -373,27 +288,18 @@ Projects: {projects}
 Create these sections:
 
 CAREER OBJECTIVE
-Write a short professional objective for a fresher.
-
 EDUCATION
-Write the education information professionally.
-
 SKILLS
-List the given skills clearly.
-
 PROJECTS
-Write the given projects professionally.
-
 STRENGTHS
-Give 4 simple professional strengths.
 
-IMPORTANT:
+Rules:
 - Do not create fake companies.
 - Do not create fake work experience.
 - Do not create fake achievements.
+- Use only the information provided.
 - Keep the language professional.
 - This is a fresher/student resume.
-- Keep the content easy to understand.
 
 Return only the resume content.
 """
@@ -412,65 +318,4 @@ Return only the resume content.
 
             "contact": {
                 "name": name,
-                "phone": phone,
-                "email": email,
-                "course": course
-            }
-
-        })
-
-    except requests.exceptions.Timeout:
-
-        return jsonify({
-
-            "success": False,
-
-            "message":
-            "AI response lene mein zyada time lag raha hai."
-
-        }), 500
-
-    except requests.exceptions.RequestException as error:
-
-        print("Resume Gemini Error:", error)
-
-        return jsonify({
-
-            "success": False,
-
-            "message":
-            "Gemini se connection nahi ho raha.",
-
-            "error": str(error)
-
-        }), 500
-
-    except Exception as error:
-
-        print("Resume Error:", error)
-
-        return jsonify({
-
-            "success": False,
-
-            "message":
-            "Resume generate karte time error aa gaya.",
-
-            "error": str(error)
-
-        }), 500
-
-
-# =========================
-# START SERVER
-# =========================
-
-if __name__ == "__main__":
-
-    port = int(os.environ.get("PORT", 5000))
-
-    app.run(
-        host="0.0.0.0",
-        port=port,
-        debug=False
-    )
+                "phones
