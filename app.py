@@ -318,4 +318,36 @@ Return only the resume content.
 
             "contact": {
                 "name": name,
-                "phones
+                "phone": phone,
+                "email": email,
+                "course": course
+            }
+
+        })
+
+    except Exception as error:
+
+        print("Gemini Resume Error:", error)
+
+        return jsonify({
+
+            "success": False,
+
+            "message": "Gemini se resume generate nahi ho raha."
+
+        }), 500
+
+
+# =========================
+# START SERVER
+# =========================
+
+if __name__ == "__main__":
+
+    port = int(os.environ.get("PORT", 5000))
+
+    app.run(
+        host="0.0.0.0",
+        port=port,
+        debug=False
+    )
